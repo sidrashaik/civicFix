@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CivicFix | Citizen Dashboard</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f7f8fc;
+      margin: 0;
+      color: #0b0a0a;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    header {
+      background: linear-gradient(90deg, #514f52, #1e1d1e);
+      color: #fff;
+      text-align: center;
+      padding: 50px 20px;
+    }
+
+    header h1 {
+      font-size: 42px;
+      margin: 0;
+    }
+
+    header p {
+      font-size: 18px;
+      color: #f4e3e3;
+      margin-top: 8px;
+    }
+
+    .content {
+      max-width: 600px;
+      margin: 50px auto;
+      background:white;
+      padding: 40px;
+      border-radius: 12px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+    }
+
+    h2 {
+      text-align: center;
+      color: #333;
+    }
+
+    form {
+      margin-top: 25px;
+    }
+
+    label {
+      font-weight: bold;
+      display: block;
+      margin-top: 15px;
+      text-align: left;
+    }
+
+    input, textarea, select {
+      width: 100%;
+      padding: 12px;
+      margin-top: 6px;
+      border-radius: 8px;
+      border: 1px solid #151414;
+      font-size: 16px;
+      background-color: white;
+    }
+
+    textarea {
+      resize: vertical;
+    }
+
+    button {
+      width: 100%;
+      padding: 14px;
+      margin-top: 25px;
+      border: none;
+      border-radius: 10px;
+      background: linear-gradient(90deg, #3f373f, #bebaba);
+      color: #0c0c0c;
+      font-size: 25px;
+      cursor: pointer;
+      transition: 0.3s ease;
+      font-style: bold;
+    }
+
+    button:hover {
+      background: linear-gradient(90deg, #4e4d4d, #333233);
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      background: #1e1d1e;
+      color: white;
+      font-size: 14px;
+      margin-top: auto;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Hello, People 👋</h1>
+    <p>Welcome to CivicFix — Register your complaint below</p>
+  </header>
+
+  <div class="content">
+    <h2>Register a Complaint</h2>
+    <form onsubmit="return submitComplaint()">
+      <label for="title">Complaint Title</label>
+      <input type="text" id="title" placeholder="Enter a short title" required>
+
+      <label for="category">Category</label>
+      <select id="category" required>
+        <option value="">Select a category</option>
+        <option value="roads">Roads / Potholes</option>
+        <option value="lighting">Street Lights</option>
+        <option value="waste">Garbage / Waste</option>
+        <option value="water">Water Supply</option>
+        <option value="other">Other</option>
+      </select>
+
+      <label for="description">Description</label>
+      <textarea id="description" rows="5" placeholder="Describe your issue in detail" required></textarea>
+
+      <label for="photo">Upload Photo</label>
+      <input type="file" id="photo" accept="image/*">
+
+      <label for="location">Location</label>
+      <input type="text" id="location" placeholder="Enter the issue location" required>
+
+      <label for="pincode">Pincode</label>
+      <input type="number" id="pincode" placeholder="Enter Pincode" required>
+
+      <button type="submit">Submit Complaint</button>
+    </form>
+  </div>
+
+  <footer>
+    &copy; 2025 CivicFix. All Rights Reserved.
+  </footer>
+
+  <script>
+    function submitComplaint() {
+      const title = document.getElementById('title').value.trim();
+      const desc = document.getElementById('description').value.trim();
+      const loc = document.getElementById('location').value.trim();
+      const category = document.getElementById('category').value;
+      const photoInput = document.getElementById('photo');
+      const pincode = document.getElementById('pincode').value.trim();
+
+      if (!title || !desc || !loc || !category || !pincode) {
+        alert("Please fill out all required fields!");
+        return false;
+      }
+
+      const complaints = JSON.parse(localStorage.getItem('complaints') || '[]');
+
+      if (photoInput.files && photoInput.files[0]) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+          const photoBase64 = e.target.result;
+
+          complaints.push({
+            title,
+            description: desc,
+            location: loc,
+            category,
+            pincode,
+            photo: photoBase64,
+            status: "Pending"
+          });
+
+          localStorage.setItem('complaints', JSON.stringify(complaints));
+          alert("Complaint submitted successfully!");
+          // Save the last submitted complaint to show on thankyou page
+          localStorage.setItem('lastComplaint', JSON.stringify(complaints[complaints.length-1]));
+          window.location.href = 'citizen-thankyou.html';
+        };
+        reader.readAsDataURL(photoInput.files[0]);
+      } else {
+        complaints.push({
+          title,
+          description: desc,
+          location: loc,
+          category,
+          pincode,
+          photo: "", // no photo
+          status: "Pending"
+        });
+
+        localStorage.setItem('complaints', JSON.stringify(complaints));
+        localStorage.setItem('lastComplaint', JSON.stringify(complaints[complaints.length-1]));
+        alert("Complaint submitted successfully!");
+        window.location.href = 'citizen-thankyou.html';
+      }
+
+      return false;
+    }
+  </script>
+</body>
+</html>

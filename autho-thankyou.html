@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CivicFix | Authority Dashboard</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f7f8fc;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+    header {
+      background: linear-gradient(90deg, #514f52, #1e1d1e);
+      color: white;
+      text-align: center;
+      padding: 50px 20px;
+    }
+    header h1 {
+      margin: 0;
+    }
+    .content {
+      max-width: 900px;
+      margin: 30px auto;
+      padding: 20px;
+    }
+    .complaint {
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+      margin-bottom: 20px;
+      padding: 20px;
+      display: flex;
+      gap: 20px;
+    }
+    .complaint img {
+      width: 150px;
+      height: 150px;
+      object-fit: cover;
+      border-radius: 10px;
+    }
+    .complaint-details {
+      flex: 1;
+    }
+    .complaint-details h3 {
+      margin: 0;
+      color: #333;
+    }
+    .complaint-details p {
+      margin: 5px 0;
+    }
+    .status {
+      font-weight: bold;
+      margin-top: 10px;
+    }
+    button {
+      margin-top: 10px;
+      padding: 10px 20px;
+      border: none;
+      background: linear-gradient(90deg, #454445, #736f6f);
+      color: white;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    button:hover {
+      background: linear-gradient(90deg, #4e4d4d, #333233);
+    }
+    footer {
+      text-align: center;
+      padding: 20px;
+      background: #1e1d1e;
+      color: white;
+      font-size: 14px;
+      margin-top: auto;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Authority Dashboard</h1>
+    <p>View all registered complaints</p>
+  </header>
+
+  <div class="content" id="complaintContainer"></div>
+
+  <footer>
+    &copy; 2025 CivicFix. All Rights Reserved.
+  </footer>
+
+  <script>
+    const complaints = JSON.parse(localStorage.getItem('complaints') || '[]');
+    const container = document.getElementById('complaintContainer');
+
+    function renderComplaints() {
+      container.innerHTML = '';
+      if (complaints.length === 0) {
+        container.innerHTML = '<p>No complaints registered yet.</p>';
+        return;
+      }
+      complaints.forEach((c, index) => {
+        const div = document.createElement('div');
+        div.classList.add('complaint');
+        div.innerHTML = `
+          <img src="${c.photo || 'placeholder.png'}" alt="Complaint Image">
+          <div class="complaint-details">
+            <h3>${c.title}</h3>
+            <p><strong>Category:</strong> ${c.category}</p>
+            <p><strong>Description:</strong> ${c.description}</p>
+            <p><strong>Location:</strong> ${c.location}</p>
+            <p><strong>Pincode:</strong> ${c.pincode}</p>
+            <p class="status"><strong>Status:</strong> ${c.status}</p>
+            <button onclick="markResolved(${index})">Mark Resolved</button>
+          </div>
+        `;
+        container.appendChild(div);
+      });
+    }
+
+    function markResolved(index) {
+      complaints[index].status = 'Resolved';
+      localStorage.setItem('complaints', JSON.stringify(complaints));
+      renderComplaints();
+    }
+
+    renderComplaints();
+  </script>
+</body

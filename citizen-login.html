@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CivicFix | Citizen Login</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f7f8fc;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    header {
+      background: linear-gradient(90deg, #514f52, #1e1d1e);
+      color: white;
+      text-align: center;
+      padding: 60px 20px;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 40px;
+    }
+
+    header p {
+      font-size: 18px;
+      margin-top: 8px;
+      color: #ccc;
+    }
+
+    .form-container {
+      max-width: 400px;
+      background: #fff;
+      margin: 60px auto;
+      padding: 40px 30px;
+      border-radius: 12px;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+      text-align: center;
+    }
+
+    .form-container img {
+      width: 80px;
+      height: 80px;
+      margin-bottom: 15px;
+    }
+
+    .form-container h2 {
+      color: #333;
+      margin-bottom: 20px;
+    }
+
+    input {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-size: 16px;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      margin-top: 10px;
+      border: none;
+      border-radius: 10px;
+      background: linear-gradient(90deg, #454445, #736f6f);
+      color: #fff;
+      font-size: 16px;
+      cursor: pointer;
+      transition: 0.3s ease;
+    }
+    select {
+  width: 100%;
+  padding: 12px;
+  margin: 10px 0;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+  background-color: #fff;
+  color: #333;
+  appearance: none; /* removes default arrow styling (optional) */
+}
+
+    button:hover {
+      background: linear-gradient(90deg, #4e4d4d, #333233);
+    }
+
+    .link {
+      display: block;
+      margin-top: 15px;
+      color: #514f52;
+      text-decoration: none;
+      font-size: 14px;
+    }
+
+    .link:hover {
+      text-decoration: underline;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      background: #1e1d1e;
+      color: white;
+      font-size: 14px;
+      margin-top: auto;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>CivicFix</h1>
+    <p>Citizen Login Portal</p>
+  </header>
+
+  <div class="form-container">
+    <img src="citizen.webp" alt="Citizen Icon">
+    <h2>Citizen Login</h2>
+    <form onsubmit="return validateLogin()">
+      <input type="text" id="name" placeholder="Enter your Name" required>
+      <input type="email" id="email" placeholder="Enter your email" required>
+      <input type="password" id="password" placeholder="Enter your password" required>
+      <input type="number"  id="phonenumber" placeholder="Enter your Phone-Number" required>
+      <input type="number" id="adhar" placeholder="Enter your Adhar-Number" required>
+      
+      <select id="gender" name="gender" required>
+        <option value="">Select your</option>
+        <option value="Male"> Male</option>
+        <option value="FeMale">Female</option>
+        <option value="Other">Other</option>
+      </select>
+      <button type="submit">Login</button>
+    </form>
+    
+  </div>
+
+  <footer>
+    &copy; 2025 CivicFix. All Rights Reserved.
+  </footer>
+
+  <script>
+    function validateLogin() {
+      const email = document.getElementById('email').value.trim();
+      const password = document.getElementById('password').value.trim();
+
+      if (!email || !password) {
+        alert("Please enter both email and password.");
+        return false;
+      }
+
+      // Simulate login success for demo
+      alert("Login successful!");
+      window.location.href = "citizen-dashboard.html";
+      return false; // prevent actual submission
+    }
+  </script>
+</body>
+</html>

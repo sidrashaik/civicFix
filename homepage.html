@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CivicFix | Login Options</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f7f8fc;
+      color: #333;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    header {
+      background: linear-gradient(90deg, #514f52, #1e1d1e);
+      color: #fff;
+      text-align: center;
+      padding: 60px 20px;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 42px;
+    }
+
+    header p {
+      font-size: 18px;
+      margin-top: 10px;
+    }
+
+    .container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 40px;
+      flex: 1;
+      padding: 60px 20px;
+    }
+
+    .login-box {
+      background-color: #494545;
+      color: white;
+      width: 300px;
+      height: 320px;
+      border-radius: 12px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+      text-align: center;
+      transition: 0.3s ease;
+      cursor: pointer;
+      padding: 20px;
+    }
+
+    .login-box:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    }
+
+    .login-box img {
+      width: 80px;
+      height: 80px;
+      margin-top: 10px;
+      border-radius: 50%;
+      background-color: #fff;
+      padding: 10px;
+      object-fit: contain;
+    }
+
+    .login-box h2 {
+      margin: 15px 0 10px;
+      font-size: 24px;
+    }
+
+    .login-box p {
+      font-size: 15px;
+      color: #dcdcdc;
+      padding: 0 10px;
+    }
+
+    .cta-btn {
+      padding: 10px 25px;
+      background: linear-gradient(90deg, #948b94, #cbbfbf);
+      color: #fff;
+      border: none;
+      border-radius: 10px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: 0.3s ease;
+      margin-bottom: 10px;
+    }
+
+    .cta-btn:hover {
+      background: linear-gradient(90deg, #4e4d4d, #333233);
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      background: #1e1d1e;
+      color: white;
+      font-size: 14px;
+    }
+
+    @media (max-width: 700px) {
+      .login-box {
+        width: 90%;
+        height: auto;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Welcome to CivicFix</h1>
+    <p>Select your login type</p>
+  </header>
+
+  <div class="container">
+    <!-- Citizen Login Box -->
+    <div class="login-box" onclick="window.location.href='citizen-login.html'">
+      <img src="citizen.webp" alt="Citizen Icon">
+      <h2>Citizen Login</h2>
+      <p>File complaints, upload images, and track resolutions.</p>
+      <button class="cta-btn">Login</button>
+    </div>
+
+    <!-- Authority Login Box -->
+    <div class="login-box" onclick="window.location.href='authologin.html'">
+      <img src="autho.webp" alt="Authority Icon">
+      <h2>Authority Login</h2>
+      <p>View and manage public complaints effectively.</p>
+      <button class="cta-btn">Login</button>
+    </div>
+  </div>
+
+  <footer>
+    &copy; 2025 CivicFix. All Rights Reserved.
+  </footer>
+</body>
+</html>
