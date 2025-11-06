@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>civicFix</title>
+  <style>
+    /* Body & General */
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f7f8fc;
+      color: #333;
+    }
+
+    /* Header / Hero Section */
+    header {
+      background: linear-gradient(90deg, #514f52, #1e1d1e);
+      color: #fff;
+      padding: 80px 20px;
+      text-align: center;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 40px;
+    }
+
+    header p {
+      margin: 10px 0 0;
+      font-size: 20px;
+    }
+
+    /* Button styling (keep same as before) */
+    .cta-btn {
+      padding: 15px 35px;
+      background: linear-gradient(90deg, #6a646a, #cab9b9);
+      color: #fff;
+      border: none;
+      border-radius: 12px;
+      font-size: 18px;
+      cursor: pointer;
+      margin-top: 20px;
+      transition: 0.3s ease;
+    }
+
+    .cta-btn:hover {
+      background: linear-gradient(90deg, #504d4d, #a197a1);
+    }
+
+    /* Feature Boxes */
+    section {
+      padding: 60px 20px;
+      text-align: center;
+      
+    }
+
+    .features {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 30px;
+      margin-top: 40px;
+    }
+
+    .feature-box {
+      background: #fff;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+      width: 280px;
+      transition: 0.3s ease;
+    }
+
+    .feature-box:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    }
+
+    .feature-box h3 {
+      color:white;
+      margin-bottom: 15px;
+    ;
+    }
+
+    .feature-box p {
+      font-size: 16px;
+      line-height: 1.5;
+    }
+
+    /* CTA Section */
+    .cta {
+      padding: 60px 20px;
+      text-align: center;
+    }
+    .feature-box{
+        background-color:#494545;
+        color:white;
+    }
+  </style>
+</head>
+<body>
+  <!-- Header / Hero -->
+  <header>
+    <h1>CivicFix</h1>
+    <p>Your Complaint,Our Responsibility.</p>
+    <button class="cta-btn" onclick="window.location.href='homepage.html'">Get-Started</button>
+  </header>
+
+  <!-- Features Section -->
+  <section>
+    <h2>How it Works</h2>
+    <div class="features">
+      <div class="feature-box">
+        <h3>Citizens Complaint</h3>
+        <p>A registered citizen submits a complaint with a photo and location within 5 km of their address..</p>
+      </div>
+      <div class="feature-box">
+        <h3>Authority Action</h3>
+        <p>The concerned authority views the complaint, fixes the issue, and uploads a “work done” photo.</p>
+      </div>
+      <div class="feature-box">
+        <h3>Closure & Reminder</h3>
+        <p>The citizen confirms to close the complaint. If not resolved on time, the system sends reminders to the authority.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="cta">
+    <h2>Your Complaint,Our Responsibility.</h2>
+    <button class="cta-btn" onclick="window.location.href='homepage.html'">Get-Started</button>
+  </section>
+</body>
+</html>
